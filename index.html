@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pink Starry Clock</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #ff9a9e, #fecfef, #fad0c4);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stars {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+
+        .star {
+            position: absolute;
+            color: #ffffff;
+            font-size: 20px;
+            opacity: 0.8;
+            animation: twinkle 2s infinite ease-in-out;
+        }
+
+        .star:nth-child(1) { top: 10%; left: 15%; animation-delay: 0s; }
+        .star:nth-child(2) { top: 20%; left: 80%; animation-delay: 0.3s; }
+        .star:nth-child(3) { top: 40%; left: 10%; animation-delay: 0.6s; }
+        .star:nth-child(4) { top: 60%; left: 75%; animation-delay: 0.9s; }
+        .star:nth-child(5) { top: 80%; left: 20%; animation-delay: 1.2s; }
+        .star:nth-child(6) { top: 15%; left: 45%; animation-delay: 0.2s; }
+        .star:nth-child(7) { top: 50%; left: 85%; animation-delay: 0.5s; }
+        .star:nth-child(8) { top: 70%; left: 30%; animation-delay: 0.8s; }
+        .star:nth-child(9) { top: 25%; left: 60%; animation-delay: 1.1s; }
+        .star:nth-child(10) { top: 85%; left: 70%; animation-delay: 1.4s; }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.4; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        .clock-circle {
+            width: 320px;
+            height: 320px;
+            background: #ffffff;
+            border-radius: 50%;
+            border: 8px solid #000000;
+            position: relative;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            margin-bottom: 30px;
+            z-index: 1;
+        }
+
+        .number {
+            position: absolute;
+            font-size: 24px;
+            font-weight: 600;
+            color: #000000;
+            text-align: center;
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .number1  { transform: translate(-50%, -50%) rotate(30deg)  translateY(-130px) rotate(-30deg); }
+        .number2  { transform: translate(-50%, -50%) rotate(60deg)  translateY(-130px) rotate(-60deg); }
+        .number3  { transform: translate(-50%, -50%) rotate(90deg)  translateY(-130px) rotate(-90deg); }
+        .number4  { transform: translate(-50%, -50%) rotate(120deg) translateY(-130px) rotate(-120deg); }
+        .number5  { transform: translate(-50%, -50%) rotate(150deg) translateY(-130px) rotate(-150deg); }
+        .number6  { transform: translate(-50%, -50%) rotate(180deg) translateY(-130px) rotate(-180deg); }
+        .number7  { transform: translate(-50%, -50%) rotate(210deg) translateY(-130px) rotate(-210deg); }
+        .number8  { transform: translate(-50%, -50%) rotate(240deg) translateY(-130px) rotate(-240deg); }
+        .number9  { transform: translate(-50%, -50%) rotate(270deg) translateY(-130px) rotate(-270deg); }
+        .number10 { transform: translate(-50%, -50%) rotate(300deg) translateY(-130px) rotate(-300deg); }
+        .number11 { transform: translate(-50%, -50%) rotate(330deg) translateY(-130px) rotate(-330deg); }
+        .number12 { transform: translate(-50%, -50%) rotate(0deg)   translateY(-130px) rotate(0deg); }
+
+        .hand {
+            position: absolute;
+            background: #000000;
+            transform-origin: bottom center;
+            left: 50%;
+            bottom: 50%;
+            transform: translateX(-50%);
+            border-radius: 4px 4px 0 0;
+        }
+
+        .hour-hand {
+            width: 6px;
+            height: 70px;
+        }
+
+        .minute-hand {
+            width: 4px;
+            height: 100px;
+        }
+
+        .second-hand {
+            width: 2px;
+            height: 110px;
+            background: #ff3333;
+        }
+
+        .center-dot {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: #000000;
+            border-radius: 50%;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 3;
+        }
+
+        .info-container {
+            text-align: center;
+            z-index: 1;
+        }
+
+        .digital-time {
+            font-size: 42px;
+            font-weight: 700;
+            color: #000000;
+            letter-spacing: 2px;
+        }
+
+        .date {
+            font-size: 18px;
+            color: #444444;
+            margin-top: 5px;
+        }
+
+        @media (max-width: 360px) {
+            .clock-circle { width: 260px; height: 260px; }
+
+            .number1  { transform: translate(-50%, -50%) rotate(30deg)  translateY(-105px) rotate(-30deg); }
+            .number2  { transform: translate(-50%, -50%) rotate(60deg)  translateY(-105px) rotate(-60deg); }
+            .number3  { transform: translate(-50%, -50%) rotate(90deg)  translateY(-105px) rotate(-90deg); }
+            .number4  { transform: translate(-50%, -50%) rotate(120deg) translateY(-105px) rotate(-120deg); }
+            .number5  { transform: translate(-50%, -50%) rotate(150deg) translateY(-105px) rotate(-150deg); }
+            .number6  { transform: translate(-50%, -50%) rotate(180deg) translateY(-105px) rotate(-180deg); }
+            .number7  { transform: translate(-50%, -50%) rotate(210deg) translateY(-105px) rotate(-210deg); }
+            .number8  { transform: translate(-50%, -50%) rotate(240deg) translateY(-105px) rotate(-240deg); }
+            .number9  { transform: translate(-50%, -50%) rotate(270deg) translateY(-105px) rotate(-270deg); }
+            .number10 { transform: translate(-50%, -50%) rotate(300deg) translateY(-105px) rotate(-300deg); }
+            .number11 { transform: translate(-50%, -50%) rotate(330deg) translateY(-105px) rotate(-330deg); }
+            .number12 { transform: translate(-50%, -50%) rotate(0deg)   translateY(-105px) rotate(0deg); }
+
+            .hour-hand { height: 55px; }
+            .minute-hand { height: 80px; }
+            .second-hand { height: 90px; }
+
+            .digital-time { font-size: 32px; }
+            .date { font-size: 15px; }
+        }
+
+        @media (max-width: 400px) {
+            .star { font-size: 16px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="stars">
+        <span class="star">★</span>
+        <span class="star">★</span>
+        <span class="star">★</span>
+        <span class="star">★</span>
+        <span class="star">★</span>
+        <span class="star">★</span>
+        <span class="star">★</span>
+        <span class="star">★</span>
+        <span class="star">★</span>
+        <span class="star">★</span>
+    </div>
+
+    <div class="clock-circle">
+        <div class="number number12">12</div>
+        <div class="number number1">1</div>
+        <div class="number number2">2</div>
+        <div class="number number3">3</div>
+        <div class="number number4">4</div>
+        <div class="number number5">5</div>
+        <div class="number number6">6</div>
+        <div class="number number7">7</div>
+        <div class="number number8">8</div>
+        <div class="number number9">9</div>
+        <div class="number number10">10</div>
+        <div class="number number11">11</div>
+
+        <div class="hand hour-hand" id="hourHand"></div>
+        <div class="hand minute-hand" id="minuteHand"></div>
+        <div class="hand second-hand" id="secondHand"></div>
+        <div class="center-dot"></div>
+    </div>
+
+    <div class="info-container">
+        <div class="digital-time" id="digitalTime">00:00:00</div>
+        <div class="date" id="date">Loading...</div>
+    </div>
+
+    <script>
+        function updateClock() {
+            const now = new Date();
+
+            let hours = now.getHours();
+            let minutes = now.getMinutes();
+            let seconds = now.getSeconds();
+
+            hours = hours < 10 ? '0' + hours : hours;
+            minutes = minutes < 10 ? '0' + minutes : minutes;
+            seconds = seconds < 10 ? '0' + seconds : seconds;
+
+            document.getElementById('digitalTime').textContent = `${hours}:${minutes}:${seconds}`;
+
+            const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+            const months = ['January', 'February', 'March', 'April', 'May', 'June',
+                            'July', 'August', 'September', 'October', 'November', 'December'];
+
+            const dayName = days[now.getDay()];
+            const monthName = months[now.getMonth()];
+            const date = now.getDate();
+            const year = now.getFullYear();
+
+            document.getElementById('date').textContent = `${dayName}, ${monthName} ${date}, ${year}`;
+
+            const hourDeg = (now.getHours() % 12) * 30 + minutes * 0.5;
+            const minuteDeg = minutes * 6;
+            const secondDeg = seconds * 6;
+
+            document.getElementById('hourHand').style.transform = `translateX(-50%) rotate(${hourDeg}deg)`;
+            document.getElementById('minuteHand').style.transform = `translateX(-50%) rotate(${minuteDeg}deg)`;
+            document.getElementById('secondHand').style.transform = `translateX(-50%) rotate(${secondDeg}deg)`;
+        }
+
+        updateClock();
+        setInterval(updateClock, 1000);
+    </script>
+</body>
+</html>
